@@ -7,9 +7,9 @@ import Login from './components/Login';
 import Reports from './components/Reports';
 import Medications from './components/Medications';
 import Appointments from './components/Appointments';
-import ProfileSimple from './components/ProfileSimple';
-import MainLayout from './components/MainLayout';
-import AIReportAnalysis from './components/AIReportAnalysis';
+import UserProfile from './components/UserProfile';
+import AppLayout from './components/AppLayout';
+import ReportAnalysis from './components/ReportAnalysis';
 import ReminderService from './components/ReminderService';
 import DoctorLogin from './components/DoctorLogin';
 import DoctorDashboard from './components/DoctorDashboard';
@@ -18,10 +18,10 @@ import DoctorAppointments from './components/DoctorAppointments';
 import PatientRecords from './components/PatientRecords';
 import HealthMetrics from './components/HealthMetrics';
 import VirtualHealthAssistant from './components/VirtualHealthAssistant';
-import FloatingHealthAssistant from './components/FloatingHealthAssistant';
+import HealthAssistantWidget from './components/HealthAssistantWidget';
 import LandingPage from './components/LandingPage';
 import EmailConfirmation from './components/EmailConfirmation';
-import OTPManager from './components/OTPManager';
+import OTPVerification from './components/OTPVerification';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -120,9 +120,9 @@ function App() {
 
   return (
     <Router>
-      <MainLayout>
-        {/* Add the FloatingHealthAssistant component here, outside of Routes */}
-        {isAuthenticated && userRole === 'patient' && <FloatingHealthAssistant />}
+      <AppLayout>
+        {/* Add the HealthAssistantWidget component here, outside of Routes */}
+        {isAuthenticated && userRole === 'patient' && <HealthAssistantWidget />}
         
         <Routes>
           {/* Public Routes */}
@@ -288,7 +288,7 @@ function App() {
               isAuthenticated && userRole === 'patient' ? (
                 <>
                   <Navbar userRole={userRole} onLogout={handleLogout} />
-                  <ProfileSimple />
+                  <UserProfile />
                 </>
               ) : isAuthenticated && userRole === 'doctor' ? (
                 <Navigate to="/doctor/dashboard" replace />
@@ -304,7 +304,7 @@ function App() {
               isAuthenticated && userRole === 'patient' ? (
                 <>
                   <Navbar userRole={userRole} onLogout={handleLogout} />
-                  <OTPManager />
+                  <OTPVerification />
                 </>
               ) : isAuthenticated && userRole === 'doctor' ? (
                 <Navigate to="/doctor/dashboard" replace />
@@ -320,7 +320,7 @@ function App() {
               isAuthenticated && userRole === 'patient' ? (
                 <>
                   <Navbar userRole={userRole} onLogout={handleLogout} />
-                  <AIReportAnalysis />
+                  <ReportAnalysis />
                 </>
               ) : isAuthenticated && userRole === 'doctor' ? (
                 <Navigate to="/doctor/dashboard" replace />
@@ -381,7 +381,7 @@ function App() {
           {/* Catch-all route */}
           <Route path="*" element={<Navigate to={getRedirectPath()} replace />} />
         </Routes>
-      </MainLayout>
+      </AppLayout>
     </Router>
   );
 }

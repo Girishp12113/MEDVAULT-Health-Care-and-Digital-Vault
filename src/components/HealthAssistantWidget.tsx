@@ -4,7 +4,7 @@ import { MessageSquare, X } from 'lucide-react';
 // import { ChevronUp } from 'lucide-react';
 import VirtualHealthAssistant from './VirtualHealthAssistant';
 
-const FloatingHealthAssistant = () => {
+const HealthAssistantWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const assistantRef = useRef<HTMLDivElement>(null);
 
@@ -54,4 +54,4 @@ const FloatingHealthAssistant = () => {
   );
 };
 
-export default FloatingHealthAssistant;
+export default HealthAssistantWidget;
